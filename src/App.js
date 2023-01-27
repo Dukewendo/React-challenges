@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
+import boxes from './boxes';
 import './App.css';
-import Body from './Body';
-import Header from './Header';
+
+
 
 export default function App() {
 
-  const [name, setName] = useState("John");
+const [boxItem, setBoxItem] = useState(boxes);
+  
+
+const elements = boxItem.map(item => (
+  <div className= "box" key={item.id}></div>
+))
 
 
-  return(
-    <div>
-      <h1>Test App</h1>
-      <Header name={name} />
-      <Body name={name} />
-    </div>
-  )
+return(
+  <main>
+    {elements}
+  </main>
+)
 }
