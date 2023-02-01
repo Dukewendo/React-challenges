@@ -1,20 +1,11 @@
-import React, { useState } from 'react'
-
+import React from "react";
 
 export default function Box(props) {
+  const boxStyle = {
+    backgroundColor: props.on ? "#222222" : "transparent",
+  };
 
-const [on, setOn] = useState(props.on);
-
-function handleClick() {
-    setOn(prevOn => !prevOn)
+  return (
+    <div className="box" onClick={() =>props.statechange(props.id)} style={boxStyle}></div>
+  );
 }
-
-
-    const boxStyle = {
-    backgroundColor: on ? "#222222" : "transparent"
-}
-
- return(
-    <div className= "box" style={boxStyle} onClick={handleClick} >{props.item}</div>
-)
-};
