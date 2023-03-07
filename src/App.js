@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import boxes from "./boxes";
-import Box from "./Box";
+import React from "react";
+import WindowTracker from "./WindowTracker";
 import "./App.css";
 
 export default function App() {
-  const [boxItem, setBoxItem] = useState(boxes);
+  /**
+   * Challenge:
+   * 1. Create state called `show`, default to `true`
+   * 2. When the button is clicked, toggle `show`
+   * 3. Only display `<WindowTracker>` if `show` is `true`
+   */
+const [show, setShow] = React.useState(true);
 
-function toggleState(id) {
-  setBoxItem(prevBoxItem => {
-    return prevBoxItem.map((item) => {
-      return item.id === id ? {...item, on: !item.on} : item
-    })
-  })
+
+function handleClick() {
+setShow(() => !show)
 }
+  
 
-  const elements = boxItem.map((item) => (
-    <Box key={item.id} on={item.on} statechange={toggleState} id={item.id}/>
-  ));
 
-  return <main>{elements}</main>;
+  return (
+    <div className="container">
+      <button onClick={handleClick}>Toggle WindowTracker</button>
+     {show && <WindowTracker/>}
+    </div>
+  );
 }
